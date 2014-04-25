@@ -1,0 +1,26 @@
+﻿
+@model DownloaderUI.Models.ImdbDetails
+
+@{
+    if (Model.Plot != null)
+    {
+    <div class="well">
+    <table>
+        <tr>
+            <td><img src="@Url.Content(Model.Poster)" alt="" /></td>
+            <td><p>@Model.Plot</p></td>
+                
+              <td>  <p>Rating: @Model.Rating</p>
+            </td>
+            
+        </tr>
+    </table>
+    
+    
+</div>
+    }
+}
+
+<div>
+    
+</div>

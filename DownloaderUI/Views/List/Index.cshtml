@@ -1,0 +1,57 @@
+﻿
+@model DownloaderUI.Models.ListModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<script type="text/javascript">
+    $(function () {
+        $('a.dialog').click(function () {
+            var url = $(this).attr('href');
+            var dialog = $('<div style="display:none"></div>').appendTo('body');
+            dialog.load(url, {},
+                function (responseText, textStatus, XMLHttpRequest) {
+                    dialog.dialog({
+                        close: function (event, ui) {
+                            dialog.remove();
+                        }
+                    });
+                });
+            return false;
+        });
+    });
+</script>
+
+<h2>Index</h2>
+
+<table class="table">
+  
+
+@foreach (var item in Model.Torrents)
+{
+
+    <tr>
+        <td>
+            <a href="@item.Link">@item.Raw</a>
+        </td>
+        <td>Imdb Score: @item.ReviewScore</td>
+
+        <td>Size: @item.Size</td>
+        <td>Seeds: @item.Seeds</td>
+        <td>Peers: @item.Peers</td>
+        <td>
+           @Html.ActionLink("More", "Movie", "List", 
+                     new DownloaderUI.Models.ImdbDetails() { Plot = item.Plot, Poster = item.PosterUrl, Rating = item.Rating, Score = item.ReviewScore },
+                     new { @class = "dialog" })
+        </td>
+
+        
+    </tr>
+       
+}
+</table>
+
+
+
+
