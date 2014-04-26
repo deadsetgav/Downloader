@@ -34,6 +34,7 @@ namespace DownloaderDomain.Concrete
         public string PosterUrl{ get; set; }
         public string Rating{ get; set; }
         public string ReviewScore { get; set; }
+        public string ImdbId { get; set; }
 
         public string Raw { get { return movie.Raw; } }
         public string Title{ get { return movie.Title; } }

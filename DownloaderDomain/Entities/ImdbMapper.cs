@@ -26,7 +26,8 @@ namespace DownloaderDomain.Entities
             returnItem.PosterUrl = jsonExtended.GetString("Poster");
             returnItem.Rating = jsonExtended.GetString("Rated");
             returnItem.ReviewScore = jsonExtended.GetString("imdbRating");
-
+            returnItem.ImdbId = jsonExtended.GetString("imdbID");
+            
             return returnItem;
         }
 

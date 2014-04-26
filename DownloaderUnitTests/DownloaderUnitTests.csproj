@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="MockObjects\MockObjectHelper.cs" />
     <Compile Include="TestExtendedTorrentRepository.cs" />
+    <Compile Include="TestRepository.cs" />
     <Compile Include="TestTorrentzMovieTorrentRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestRssHelper.cs" />
@@ -64,7 +65,7 @@
     <Compile Include="UITests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\DownloaderUI\WebApplication1\DownloaderUI.csproj">
+    <ProjectReference Include="..\DownloaderUI\DownloaderUI.csproj">
       <Project>{eb46a988-13da-447b-a940-7c1f4fc9176f}</Project>
       <Name>DownloaderUI</Name>
     </ProjectReference>
