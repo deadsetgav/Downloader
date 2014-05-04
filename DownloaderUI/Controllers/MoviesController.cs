@@ -12,15 +12,15 @@ namespace WebApplication1.Controllers
 {
     public class MoviesController : Controller
     {
-        private IFacade repoFactory;
+        private IRepositoryFactory repoFactory;
         private int PageSize = 10;
 
         public MoviesController()
         {
-            repoFactory = new DownloaderDomain.Concrete.DownloaderDomainFacade();
+            repoFactory = new DownloaderDomain.Concrete.RespositoryFactory();
         }
 
-        public MoviesController(IFacade facade)
+        public MoviesController(IRepositoryFactory facade)
         {
             repoFactory = facade;
         }

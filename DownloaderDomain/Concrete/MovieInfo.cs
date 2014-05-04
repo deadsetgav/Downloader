@@ -3,6 +3,10 @@ using System;
 
 namespace DownloaderDomain.Concrete
 {
+
+    //TODO - Get rid of these classes.
+
+
     public class MovieInfo : IMovieTorrentInfo
     {
         public string Raw { get; set; }

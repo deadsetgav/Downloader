@@ -45,12 +45,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IExtendedMovieTorrentRepository.cs" />
-    <Compile Include="Abstract\IFacade.cs" />
+    <Compile Include="Abstract\IRepositoryFactory.cs" />
     <Compile Include="Abstract\IMovieTorrentRepository.cs" />
     <Compile Include="Abstract\IMovieTorrentInfo.cs" />
     <Compile Include="Abstract\IRssParser.cs" />
     <Compile Include="Abstract\ISyndicationItem.cs" />
-    <Compile Include="Concrete\DownloaderDomainFacade.cs" />
+    <Compile Include="Concrete\RespositoryFactory.cs" />
     <Compile Include="Concrete\ExtendedTorrentRepository.cs" />
     <Compile Include="Concrete\TorrentzMovieInfo.cs" />
     <Compile Include="Concrete\TorrentzMovieTorrentRepository.cs" />

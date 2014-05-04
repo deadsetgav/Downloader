@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace DownloaderDomain.Abstract
 {
-    public interface IFacade 
+    public interface IRepositoryFactory 
     {
-        IExtendedMovieTorrentRepository GetLatestUploaded();
-        IExtendedMovieTorrentRepository GetMostPopular();
+        //IExtendedMovieTorrentRepository GetLatestUploaded();
+        //IExtendedMovieTorrentRepository GetMostPopular();
 
         IMovieTorrentRepository GetLatestUploadedTorrents();
         IMovieTorrentRepository GetMostPopularTorrents();

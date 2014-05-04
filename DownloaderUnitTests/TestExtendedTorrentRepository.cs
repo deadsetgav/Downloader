@@ -54,12 +54,11 @@ namespace DownloaderUnitTests
         }
 
         [TestMethod]
-        [Ignore]
         public void Test_Facade()
         {
-            var facade = new DownloaderDomainFacade();
-            var latestRepo = facade.GetLatestUploaded();
-            var popularRepo = facade.GetMostPopular();
+            var facade = new RespositoryFactory();
+            var latestRepo = facade.GetLatestUploadedTorrents();
+            var popularRepo = facade.GetMostPopularTorrents();
 
             Assert.IsTrue(latestRepo.MovieTorrents.Count() > 0);
             Assert.IsTrue(popularRepo.MovieTorrents.Count() > 0);

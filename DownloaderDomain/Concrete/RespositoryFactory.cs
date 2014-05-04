@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DownloaderDomain.Concrete
 {
-    public class DownloaderDomainFacade : IFacade
+    public class RespositoryFactory : IRepositoryFactory
     {
         private string torrentzMostPopular = "http://torrentz.eu/feed_verifiedP?q=movies";
         private string torrentzLatest = "http://torrentz.eu/feed_verified?q=movies";
@@ -25,22 +25,22 @@ namespace DownloaderDomain.Concrete
             return new TorrentzMovieTorrentRepository(feed.GetFeedFromSite(torrentzMostPopular), new TorrentzParser());
         }
 
-        public IExtendedMovieTorrentRepository GetLatestUploaded()
-        {
-            return GetRepository(torrentzLatest);
-        }
+        //public IExtendedMovieTorrentRepository GetLatestUploaded()
+        //{
+        //    return GetRepository(torrentzLatest);
+        //}
 
-        public IExtendedMovieTorrentRepository GetMostPopular()
-        {
-            return GetRepository(torrentzMostPopular);
-        }
+        //public IExtendedMovieTorrentRepository GetMostPopular()
+        //{
+        //    return GetRepository(torrentzMostPopular);
+        //}
 
-        private IExtendedMovieTorrentRepository GetRepository(string url)
-        {
-            var feed = new RssHelper();
-            var torrentRepo = new TorrentzMovieTorrentRepository(feed.GetFeedFromSite(url), new TorrentzParser());
-            return new ExtendedTorrentRepository(torrentRepo);
-        }
+        //private IExtendedMovieTorrentRepository GetRepository(string url)
+        //{
+        //    var feed = new RssHelper();
+        //    var torrentRepo = new TorrentzMovieTorrentRepository(feed.GetFeedFromSite(url), new TorrentzParser());
+        //    return new ExtendedTorrentRepository(torrentRepo);
+        //}
 
     }
 }
