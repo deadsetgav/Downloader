@@ -8,12 +8,12 @@ using DownloaderDomain.Entities;
 namespace DownloaderUI.TestData
 {
 
-    public class TestRepository : IExtendedMovieTorrentRepository
+    public class TestForDevRepository : IExtendedMovieTorrentRepository
     {
 
         private List<IMovieExtendedInfo> movies;
 
-        public TestRepository()
+        public TestForDevRepository()
         {
             movies = new List<IMovieExtendedInfo>();
 
@@ -38,7 +38,7 @@ namespace DownloaderUI.TestData
                 Seeds = "15,223",
                 Peers = "9,612",
                 Date = DateTime.Parse("Mon, 07 Apr 2014 18:20:18 +0000"),
-                Link="http://torrentz.eu/61a13b0974742f8f2f2e0c610a352a50ebb0f9fb"
+                Link = "http://torrentz.eu/61a13b0974742f8f2f2e0c610a352a50ebb0f9fb"
             });
 
             movies.Add(new Movie
@@ -57,8 +57,8 @@ namespace DownloaderUI.TestData
                 Peers = "46",
                 Date = DateTime.Parse("Fri, 28 Mar 2014 23:41:05 +0000"),
                 Link = "http://torrentz.eu/c022d271812e073eac52a8a389342172889f638e"
-            }); 
-            
+            });
+
             movies.Add(new Movie
             {
                 Raw = "Sparks 2013 720p BrRip x264 YIFY",
@@ -75,8 +75,8 @@ namespace DownloaderUI.TestData
                 Peers = "5,548",
                 Date = DateTime.Now,
                 Link = "http://torrentz.eu/852a77b9a4e3a3c4a5b3abf1bfc47fb7e5035095"
-            }); 
-            
+            });
+
             movies.Add(new Movie
             {
                 Raw = "Frozen 2013 1080p BrRip x264 YIFY",
@@ -93,7 +93,7 @@ namespace DownloaderUI.TestData
                 Peers = "1,769",
                 Date = DateTime.Parse("Thu, 27 Feb 2014 06:40:37"),
                 Link = "http://torrentz.eu/4956a4e976ea948025c3c3554567ca2820f65f64"
-            }); 
+            });
 
             movies.Add(new Movie
             {
@@ -110,17 +110,17 @@ namespace DownloaderUI.TestData
                 Seeds = "12,646",
                 Peers = "2,383",
                 Date = DateTime.Parse("Wed, 19 Mar 2014 06:57:01 +0000"),
-                Link="http://torrentz.eu/d61abdbd6a17d5fa2f116078a2fa20f02b07af8f"
+                Link = "http://torrentz.eu/d61abdbd6a17d5fa2f116078a2fa20f02b07af8f"
             });
 
         }
-        
+
         public IEnumerable<IMovieExtendedInfo> MovieTorrents
         {
             get { return movies; }
         }
 
-        private class Movie : IMovieExtendedInfo 
+        private class Movie : IMovieExtendedInfo
         {
             public string Raw { get; set; }
             public string RunTime { get; set; }
@@ -140,7 +140,9 @@ namespace DownloaderUI.TestData
             public DateTime Date { get; set; }
             public string ImdbId { get; set; }
 
-            public bool IsValidForMetadataSearch { get { return true; } set{} }
+            public bool IsValidForMetadataSearch { get { return true; } set { } }
+
+            public string ImdbUrl { get; set; }
         }
     }
 }

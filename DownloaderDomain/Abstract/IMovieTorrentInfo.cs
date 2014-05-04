@@ -33,6 +33,7 @@ namespace DownloaderDomain.Abstract
         string Rating { get; }
         string ReviewScore { get; }
         string ImdbId { get; }
+        string ImdbUrl { get; }
     }
 }
 

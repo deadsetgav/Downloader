@@ -10,5 +10,8 @@ namespace DownloaderDomain.Abstract
     {
         IExtendedMovieTorrentRepository GetLatestUploaded();
         IExtendedMovieTorrentRepository GetMostPopular();
+
+        IMovieTorrentRepository GetLatestUploadedTorrents();
+        IMovieTorrentRepository GetMostPopularTorrents();
     }
 }

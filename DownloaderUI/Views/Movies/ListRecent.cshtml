@@ -1,0 +1,21 @@
+﻿
+@model DownloaderUI.Models.ListModel
+@using WebApplication1.HtmlHelpers
+
+@{
+    ViewBag.Title = "Index";
+}
+<div class="panel">
+    <div class="panel-heading">
+        <h3>Torrents</h3>
+    </div>
+    <div class="panel-body">
+        @foreach (var item in Model.Torrents)
+        {
+            @Html.Partial("TorrentSummary", item)
+        }
+    </div>
+    <div class="panel-footer">
+        @Html.PageLinks(Model.PagingInfo, x => Url.Action("ListRecent", new { page = x }))
+    </div>
+</div>

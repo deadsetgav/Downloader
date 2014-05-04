@@ -141,6 +141,7 @@ namespace DownloaderUI.TestData
             public string ImdbId { get; set; }
 
             public bool IsValidForMetadataSearch { get { return true; } set{} }
+            public string ImdbUrl { get; set; }
         }
     }
 }

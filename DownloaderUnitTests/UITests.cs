@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using DownloaderUI.TestData;
 using System.Linq;
 
 namespace DownloaderUnitTests
@@ -11,7 +10,7 @@ namespace DownloaderUnitTests
         [TestMethod]
         public void TestFakeRepository()
         {
-            var repo = new TestRepository();
+            var repo = new DownloaderUI.TestData.TestRepository();
 
             var movie = repo.MovieTorrents.ToArray()[0];
             

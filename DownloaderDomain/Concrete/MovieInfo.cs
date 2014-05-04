@@ -52,6 +52,8 @@ namespace DownloaderDomain.Concrete
             get { return movie.IsValidForMetadataSearch; }
             set { movie.IsValidForMetadataSearch = value; } 
         }
+
+        public string ImdbUrl { get { return string.Format("http://www.Imdb.com/title/{0}", ImdbId); } }
         
     }
 }

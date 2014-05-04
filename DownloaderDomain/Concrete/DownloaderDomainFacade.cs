@@ -13,6 +13,18 @@ namespace DownloaderDomain.Concrete
         private string torrentzMostPopular = "http://torrentz.eu/feed_verifiedP?q=movies";
         private string torrentzLatest = "http://torrentz.eu/feed_verified?q=movies";
 
+        public IMovieTorrentRepository GetLatestUploadedTorrents()
+        {
+            var feed = new RssHelper();
+            return new TorrentzMovieTorrentRepository(feed.GetFeedFromSite(torrentzLatest));
+        }
+
+        public IMovieTorrentRepository GetMostPopularTorrents()
+        {
+            var feed = new RssHelper();
+            return new TorrentzMovieTorrentRepository(feed.GetFeedFromSite(torrentzMostPopular));
+        }
+
         public IExtendedMovieTorrentRepository GetLatestUploaded()
         {
             return GetRepository(torrentzLatest);
@@ -29,5 +41,6 @@ namespace DownloaderDomain.Concrete
             var torrentRepo = new TorrentzMovieTorrentRepository(feed.GetFeedFromSite(url));
             return new ExtendedTorrentRepository(torrentRepo);
         }
+
     }
 }

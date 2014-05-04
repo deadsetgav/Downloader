@@ -5,7 +5,7 @@
     ViewBag.Title = "Index";
 }
 
-<script type="text/javascript">
+@*<script type="text/javascript">
     $(function () {
         $('a.dialog').click(function () {
             var url = $(this).attr('href');
@@ -25,13 +25,14 @@
 
 <h2>Index</h2>
 
-<table class="table">
+<table class="table">*@
   
 
 @foreach (var item in Model.Torrents)
 {
+    @Html.Partial("TorrentSummary",item)
 
-    <tr>
+    @*<tr>
         <td>
             <a href="@item.Link">@item.Raw</a>
         </td>
@@ -44,13 +45,11 @@
            @Html.ActionLink("More", "Movie", "List", 
                      new DownloaderUI.Models.ImdbDetails() { Plot = item.Plot, Poster = item.PosterUrl, Rating = item.Rating, Score = item.ReviewScore },
                      new { @class = "dialog" })
-        </td>
-
-        
-    </tr>
+        </td>  
+    </tr>*@
        
 }
-</table>
+@*</table>*@
 
 
 
