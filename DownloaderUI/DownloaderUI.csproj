@@ -163,13 +163,14 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HtmlHelpers\PagingHelper.cs" />
+    <Compile Include="Infrastructure\Binders\ImdbCacheBinder.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ImdbCache.cs" />
     <Compile Include="Models\ImdbDetails.cs" />
     <Compile Include="Models\ItemModel.cs" />
     <Compile Include="Models\ListModel.cs" />
     <Compile Include="Models\PagingInfo.cs" />
-    <Compile Include="Models\Sort.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="TestData\TestRepository.cs" />
@@ -208,11 +209,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\List\Index.cshtml" />
-    <Content Include="Views\List\TorrentSummary.cshtml" />
-    <Content Include="Views\List\Movie.cshtml" />
-    <Content Include="Views\List\PartialPopup.cshtml" />
-    <Content Include="Views\Shared\MovieInfoRow.cshtml" />
     <Content Include="Views\Movies\ListRecent.cshtml" />
     <Content Include="Views\Movies\ListPopular.cshtml" />
     <Content Include="Views\Movies\TorrentSummary.cshtml" />

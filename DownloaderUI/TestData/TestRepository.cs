@@ -8,17 +8,14 @@ using DownloaderDomain.Entities;
 namespace DownloaderUI.TestData
 {
 
-    public class TestForDevRepository : IExtendedMovieTorrentRepository
+    public class TestForDevRepository 
     {
-
-        private List<IMovieExtendedInfo> movies;
+        private List<IExtendedMovieInfo> movies;
 
         public TestForDevRepository()
         {
-            movies = new List<IMovieExtendedInfo>();
-
+            movies = new List<IExtendedMovieInfo>();
             AddFakesToMovieList();
-
         }
 
         private void AddFakesToMovieList()
@@ -115,12 +112,12 @@ namespace DownloaderUI.TestData
 
         }
 
-        public IEnumerable<IMovieExtendedInfo> MovieTorrents
+        public IEnumerable<IExtendedMovieInfo> MovieTorrents
         {
             get { return movies; }
         }
 
-        private class Movie : IMovieExtendedInfo
+        private class Movie : IExtendedMovieInfo
         {
             public string Raw { get; set; }
             public string RunTime { get; set; }
@@ -145,4 +142,5 @@ namespace DownloaderUI.TestData
             public string ImdbUrl { get; set; }
         }
     }
+
 }

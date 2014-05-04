@@ -16,42 +16,42 @@ namespace DownloaderUnitTests
     {
         private MockObjectHelper mocks = new MockObjectHelper();     
 
-        [TestMethod]
-        [TestCategory("Integration")]
-        [Ignore]
-        public void Test_Integration()
-        {
-            var torrentzRepo = new TorrentzMovieTorrentRepository(mocks.GetSyndicationFeed(), new TorrentzParser());
+        //[TestMethod]
+        //[TestCategory("Integration")]
+        //[Ignore]
+        //public void Test_Integration()
+        //{
+        //    var torrentzRepo = new TorrentzMovieTorrentRepository(mocks.GetSyndicationFeed(), new TorrentzParser());
 
-            var target = new ExtendedTorrentRepository(torrentzRepo);
-            var results = target.MovieTorrents;
+        //    var target = new ExtendedTorrentRepository(torrentzRepo);
+        //    var results = target.MovieTorrents;
 
-            Assert.IsInstanceOfType(results, typeof(IEnumerable<IMovieExtendedInfo>));
-            Assert.IsTrue(results.Count() > 0);
-            Assert.AreEqual(torrentzRepo.MovieTorrents.Count(), target.MovieTorrents.Count());
+        //    Assert.IsInstanceOfType(results, typeof(IEnumerable<IExtendedMovieInfo>));
+        //    Assert.IsTrue(results.Count() > 0);
+        //    Assert.AreEqual(torrentzRepo.MovieTorrents.Count(), target.MovieTorrents.Count());
             
-        }
+        //}
 
-        [TestMethod]
-        [TestCategory("Integration")]
-        [Ignore]
-        public void Test_Live_Integration()
-        {
-            var rssHelper = new RssHelper();
-            var feed = rssHelper.GetFeedFromSite("http://torrentz.eu/feed_verifiedP?q=movies");
+        //[TestMethod]
+        //[TestCategory("Integration")]
+        //[Ignore]
+        //public void Test_Live_Integration()
+        //{
+        //    var rssHelper = new RssHelper();
+        //    var feed = rssHelper.GetFeedFromSite("http://torrentz.eu/feed_verifiedP?q=movies");
 
-            var torrentzRepo = new TorrentzMovieTorrentRepository(feed, new TorrentzParser());
+        //    var torrentzRepo = new TorrentzMovieTorrentRepository(feed, new TorrentzParser());
 
-            var target = new ExtendedTorrentRepository(torrentzRepo);
-            var results = target.MovieTorrents;
+        //    var target = new ExtendedTorrentRepository(torrentzRepo);
+        //    var results = target.MovieTorrents;
 
-            OutputToConsole(results);
+        //    OutputToConsole(results);
 
-            Assert.IsInstanceOfType(results, typeof(IEnumerable<IMovieExtendedInfo>));
-            Assert.IsTrue(results.Count() > 0);
-            Assert.AreEqual(torrentzRepo.MovieTorrents.Count(), target.MovieTorrents.Count());
+        //    Assert.IsInstanceOfType(results, typeof(IEnumerable<IExtendedMovieInfo>));
+        //    Assert.IsTrue(results.Count() > 0);
+        //    Assert.AreEqual(torrentzRepo.MovieTorrents.Count(), target.MovieTorrents.Count());
             
-        }
+        //}
 
         [TestMethod]
         public void Test_Facade()
@@ -64,7 +64,7 @@ namespace DownloaderUnitTests
             Assert.IsTrue(popularRepo.MovieTorrents.Count() > 0);
         }
 
-        private void OutputToConsole(IEnumerable<IMovieExtendedInfo> movies)
+        private void OutputToConsole(IEnumerable<IExtendedMovieInfo> movies)
         {
 
             foreach (var movie in movies)

@@ -9,7 +9,7 @@ namespace DownloaderUI.Models
 {
     public class ListModel
     {
-        public IEnumerable<IMovieExtendedInfo> Torrents { get; set; }
+        public IEnumerable<IExtendedMovieInfo> Torrents { get; set; }
         public PagingInfo PagingInfo { get; set; }
     }
 }

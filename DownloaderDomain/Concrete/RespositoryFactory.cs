@@ -25,22 +25,5 @@ namespace DownloaderDomain.Concrete
             return new TorrentzMovieTorrentRepository(feed.GetFeedFromSite(torrentzMostPopular), new TorrentzParser());
         }
 
-        //public IExtendedMovieTorrentRepository GetLatestUploaded()
-        //{
-        //    return GetRepository(torrentzLatest);
-        //}
-
-        //public IExtendedMovieTorrentRepository GetMostPopular()
-        //{
-        //    return GetRepository(torrentzMostPopular);
-        //}
-
-        //private IExtendedMovieTorrentRepository GetRepository(string url)
-        //{
-        //    var feed = new RssHelper();
-        //    var torrentRepo = new TorrentzMovieTorrentRepository(feed.GetFeedFromSite(url), new TorrentzParser());
-        //    return new ExtendedTorrentRepository(torrentRepo);
-        //}
-
     }
 }

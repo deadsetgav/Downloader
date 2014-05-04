@@ -8,7 +8,7 @@ using DownloaderUnitTests.MockObjects;
 namespace DownloaderUnitTests
 {
     [TestClass]
-    public class TestImdbAdapter
+    public class TestImdbQuery
     {
         private MockObjectHelper mocks = new MockObjectHelper();      
 
@@ -20,10 +20,12 @@ namespace DownloaderUnitTests
             testMovie.Year = "1987";
             testMovie.IsValidForMetadataSearch = true;
 
-            var target = new ImdbAdapter();
-            var result = target.GetExtendedInfo(testMovie);
+            var query = new ImdbQuery();
+            JsonDeserializer json = query.GetMovieDetails(testMovie.Title, testMovie.Year);
+            
+            var result = new ExtendedMovieInfo(testMovie, json);
 
-            Assert.IsInstanceOfType(result, typeof(IMovieExtendedInfo));
+            Assert.IsInstanceOfType(result, typeof(IExtendedMovieInfo));
             Assert.AreEqual("7.6",result.ReviewScore );
         }
 
@@ -35,8 +37,10 @@ namespace DownloaderUnitTests
             testMovie.Year = "2013";
             testMovie.IsValidForMetadataSearch = true;
 
-            var target = new ImdbAdapter();
-            var result = target.GetExtendedInfo(testMovie);
+            var query = new ImdbQuery();
+            JsonDeserializer json = query.GetMovieDetails(testMovie.Title, testMovie.Year);
+
+            var result = new ExtendedMovieInfo(testMovie, json);
 
             Assert.AreEqual("R", result.Rating);
             Assert.AreEqual("119 min", result.RunTime);
@@ -54,8 +58,7 @@ namespace DownloaderUnitTests
             testMovie.Year = "1987";
             testMovie.IsValidForMetadataSearch = true;
 
-            var target = new ImdbMapper();
-            var result = target.ParseJson(testMovie, mocks.GetTestJson());
+            var result =   new ExtendedMovieInfo(testMovie, mocks.GetTestJson());
 
             Assert.AreEqual("R", result.Rating);
             Assert.AreEqual("110 min", result.RunTime);

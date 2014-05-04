@@ -23,17 +23,5 @@ namespace DownloaderDomain.Abstract
         bool IsValidForMetadataSearch { get; set; }
 
     }
-
-    public interface IMovieExtendedInfo : IMovieTorrentInfo
-    {
-        string RunTime { get; }
-        string Genre { get; }
-        string Plot { get; }
-        string PosterUrl { get; }
-        string Rating { get; }
-        string ReviewScore { get; }
-        string ImdbId { get; }
-        string ImdbUrl { get; }
-    }
 }
 

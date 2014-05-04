@@ -8,7 +8,7 @@ namespace DownloaderUI.Models
 {
     public class ItemModel
     {
-        public IMovieExtendedInfo Movie { get; set; }
+        public IExtendedMovieInfo Movie { get; set; }
 
    
     }

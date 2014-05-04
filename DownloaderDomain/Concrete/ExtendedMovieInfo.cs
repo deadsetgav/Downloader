@@ -1,23 +1,14 @@
 ﻿using DownloaderDomain.Abstract;
+using DownloaderDomain.Entities;
 using System;
 
 namespace DownloaderDomain.Concrete
 {
-
-    //TODO - Get rid of these classes.
-
-
-   
-
-    public class ExtendedMovieInfo : IMovieExtendedInfo
+    public class ExtendedMovieInfo : IExtendedMovieInfo
     {
         private IMovieTorrentInfo movie;
 
-        public ExtendedMovieInfo(IMovieTorrentInfo baseMovie)
-        {
-            movie = baseMovie;
-        }
-
+        #region Properties
         public string RunTime { get; set; }
         public string Genre { get; set; }
         public string Plot { get; set; }
@@ -45,7 +36,43 @@ namespace DownloaderDomain.Concrete
 
         public string ImdbUrl { get { return string.Format("http://www.Imdb.com/title/{0}", ImdbId); } }
 
-    }
+        #endregion
 
+        public ExtendedMovieInfo(IMovieTorrentInfo baseMovie, JsonDeserializer json)
+        {
+            movie = baseMovie;
+            if (json.IsNull)
+            {
+                PopuateEmptyValues();
+            }
+            else
+            {
+                PopuateImdbValues(json);
+            }
+        }
+
+        private void PopuateEmptyValues()
+        {
+            RunTime = string.Empty;
+            Genre = string.Empty;
+            Plot = string.Empty;
+            PosterUrl = string.Empty;
+            Rating = string.Empty;
+            ReviewScore = string.Empty;
+            ImdbId = string.Empty;
+        }
+
+        private void PopuateImdbValues(JsonDeserializer json)
+        {
+            RunTime = json.GetString("Runtime");
+            Genre = json.GetString("Genre");
+            Plot = json.GetString("Plot");
+            PosterUrl = json.GetString("Poster");
+            Rating = json.GetString("Rated");
+            ReviewScore = json.GetString("imdbRating");
+            ImdbId = json.GetString("imdbID");
+        }
+
+    }
 
 }
