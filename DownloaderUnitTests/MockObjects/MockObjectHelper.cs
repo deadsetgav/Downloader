@@ -19,6 +19,8 @@ namespace DownloaderUnitTests.MockObjects
         {
         }
 
+
+
         public JsonDeserializer GetTestJson()
         {
             var jsonString = @"{""Title"":""Lethal Weapon"",""Year"":""1987"",""Rated"":""R"",""Released"":""06 Mar 1987"",""Runtime"":""110 min"",""Genre"":""Action, Thriller"",""Director"":""Richard Donner"",""Writer"":""Shane Black"",""Actors"":""Mel Gibson, Danny Glover, Gary Busey, Mitch Ryan"",""Plot"":""A veteran cop, Murtaugh, is partnered with a young suicidal cop, Riggs. Both having one thing in common; hating working in pairs. Now they must learn to work with one another to stop a gang of drug smugglers."",""Language"":""English"",""Country"":""USA"",""Awards"":""Nominated for 1 Oscar. Another 5 wins & 1 nomination."",""Poster"":""http://ia.media-imdb.com/images/M/MV5BMTU1MDMzOTcxNV5BMl5BanBnXkFtZTcwNDY5NjQyMQ@@._V1_SX300.jpg"",""Metascore"":""67"",""imdbRating"":""7.6"",""imdbVotes"":""153,833"",""imdbID"":""tt0093409"",""Type"":""movie"",""Response"":""True""}";
@@ -864,6 +866,5 @@ namespace DownloaderUnitTests.MockObjects
 
         #endregion
     }
-
 
 }

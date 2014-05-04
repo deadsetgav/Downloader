@@ -26,15 +26,15 @@ namespace DownloaderDomain.Concrete
 
         private string summary;
 
-        public TorrentzMovieInfo(SyndicationItem item)
+        public TorrentzMovieInfo(ISyndicationItem item)
         {
             Link = item.Id;
-            Date = item.PublishDate.DateTime;
-            Raw = item.Title.Text;
+            Date = item.PublishDate;
+            Raw =  item.Title;
 
-            ParseTitle(item.Title.Text);
+            ParseTitle(item.Title);
     
-            summary = item.Summary.Text;
+            summary = item.Summary;
             ParseSummary();
             
         }

@@ -21,7 +21,7 @@ namespace DownloaderUnitTests
         [Ignore]
         public void Test_Integration()
         {
-            var torrentzRepo = new TorrentzMovieTorrentRepository(mocks.GetSyndicationFeed());
+            var torrentzRepo = new TorrentzMovieTorrentRepository(mocks.GetSyndicationFeed(), new TorrentzParser());
 
             var target = new ExtendedTorrentRepository(torrentzRepo);
             var results = target.MovieTorrents;
@@ -40,7 +40,7 @@ namespace DownloaderUnitTests
             var rssHelper = new RssHelper();
             var feed = rssHelper.GetFeedFromSite("http://torrentz.eu/feed_verifiedP?q=movies");
 
-            var torrentzRepo = new TorrentzMovieTorrentRepository(feed);
+            var torrentzRepo = new TorrentzMovieTorrentRepository(feed, new TorrentzParser());
 
             var target = new ExtendedTorrentRepository(torrentzRepo);
             var results = target.MovieTorrents;

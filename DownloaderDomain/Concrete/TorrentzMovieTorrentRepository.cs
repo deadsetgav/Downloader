@@ -11,14 +11,13 @@ namespace DownloaderDomain.Concrete
 
         private List<IMovieTorrentInfo> movies;
 
-        public TorrentzMovieTorrentRepository(SyndicationFeed feed)
+        public TorrentzMovieTorrentRepository(SyndicationFeed feed, IRssParser parser)
         {
             movies = new List<IMovieTorrentInfo>();
 
             foreach (var feedItem in feed.Items)
             {
-                var parser = new RssFeedMapper();
-                var movieInfo = parser.ParseMovie(feedItem);
+                var movieInfo = parser.Parse(feedItem);
                 movies.Add(movieInfo);
             }
 

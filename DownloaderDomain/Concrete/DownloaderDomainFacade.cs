@@ -16,13 +16,13 @@ namespace DownloaderDomain.Concrete
         public IMovieTorrentRepository GetLatestUploadedTorrents()
         {
             var feed = new RssHelper();
-            return new TorrentzMovieTorrentRepository(feed.GetFeedFromSite(torrentzLatest));
+            return new TorrentzMovieTorrentRepository(feed.GetFeedFromSite(torrentzLatest), new TorrentzParser());
         }
 
         public IMovieTorrentRepository GetMostPopularTorrents()
         {
             var feed = new RssHelper();
-            return new TorrentzMovieTorrentRepository(feed.GetFeedFromSite(torrentzMostPopular));
+            return new TorrentzMovieTorrentRepository(feed.GetFeedFromSite(torrentzMostPopular), new TorrentzParser());
         }
 
         public IExtendedMovieTorrentRepository GetLatestUploaded()
@@ -38,7 +38,7 @@ namespace DownloaderDomain.Concrete
         private IExtendedMovieTorrentRepository GetRepository(string url)
         {
             var feed = new RssHelper();
-            var torrentRepo = new TorrentzMovieTorrentRepository(feed.GetFeedFromSite(url));
+            var torrentRepo = new TorrentzMovieTorrentRepository(feed.GetFeedFromSite(url), new TorrentzParser());
             return new ExtendedTorrentRepository(torrentRepo);
         }
 
