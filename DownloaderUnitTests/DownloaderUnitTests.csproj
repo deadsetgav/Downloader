@@ -58,6 +58,7 @@
     <Compile Include="MockObjects\MockObjectHelper.cs" />
     <Compile Include="TestExtendedTorrentRepository.cs" />
     <Compile Include="TestRepository.cs" />
+    <Compile Include="TestTorrentzMovieInfo.cs" />
     <Compile Include="TestTorrentzMovieTorrentRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestRssHelper.cs" />

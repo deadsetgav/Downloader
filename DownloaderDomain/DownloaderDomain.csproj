@@ -48,14 +48,17 @@
     <Compile Include="Abstract\IFacade.cs" />
     <Compile Include="Abstract\IMovieTorrentRepository.cs" />
     <Compile Include="Abstract\IMovieTorrentInfo.cs" />
+    <Compile Include="Abstract\IRssParser.cs" />
     <Compile Include="Concrete\DownloaderDomainFacade.cs" />
     <Compile Include="Concrete\ExtendedTorrentRepository.cs" />
+    <Compile Include="Concrete\TorrentzMovieInfo.cs" />
     <Compile Include="Concrete\TorrentzMovieTorrentRepository.cs" />
     <Compile Include="Entities\ImdbAdapter.cs" />
     <Compile Include="Concrete\MovieInfo.cs" />
     <Compile Include="Entities\ImdbMapper.cs" />
     <Compile Include="Entities\RssFeedMapper.cs" />
     <Compile Include="Entities\RssHelper.cs" />
+    <Compile Include="Entities\TorrentzParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
