@@ -10,38 +10,56 @@ using System.Web.Script.Serialization;
 
 namespace DownloaderDomain.Entities
 {
-    public class ImdbAdapter
+    public class ImdbQuery 
     {
         private string urlGetByTitleTemplate = "http://www.omdbapi.com/?t={0}&y={1}";
         private string urlSearchTemplate = "http://www.omdbapi.com/?s={0}&y={1}";
         private string urlGetByIDTemplate = "http://www.omdbapi.com/?i={0}";
 
-        private ImdbMapper mapper;
-
-        public IMovieExtendedInfo GetExtendedInfo(IMovieTorrentInfo movieInfo) 
+        public JsonDeserializer GetMovieDetails(string title, string year)
         {
-            mapper = new ImdbMapper();
-
-            if (movieInfo.IsValidForMetadataSearch) 
-            {
-                JsonDeserializer json = GetMovie(movieInfo);
-
-                if (found(json))
-                    return mapper.ParseJson(movieInfo, json);
-
-                else
-                    return SearchTitle(movieInfo);
-            }
-            else
-            {
-                return mapper.GetBlankExtendedInfo(movieInfo);
-            }         
-        } 
-        
-        private JsonDeserializer GetMovie(IMovieTorrentInfo movieInfo)
-        {
-            var url = string.Format(urlGetByTitleTemplate, movieInfo.Title, movieInfo.Year);
+            var url = string.Format(urlGetByTitleTemplate, title, year);
             var request =  SendRequest(url);
+            var json = new JsonDeserializer(request);
+
+            if (found(json))
+                return json;
+
+            else
+                return SearchTitle(title,year);
+        }
+
+        private bool found(JsonDeserializer json)
+        {
+            return (json.GetString("Response") == "True");
+        }
+       
+        public JsonDeserializer SearchTitle(string title, string year)
+        {
+            var url = string.Format(urlSearchTemplate, title, year);
+            var request = SendRequest(url);
+            var response =  new JsonDeserializer(request);
+
+            var search = (object[])response.GetObject("Search");
+            if (search != null)
+            {
+                foreach (Dictionary<string, object> result in search)
+                {
+                    if (result["Type"].ToString() == "movie")
+                    {
+                        var Id = result["imdbID"].ToString();
+                        return GetTtile(Id);
+                    }
+                }
+            }
+            // Null object
+            return new JsonDeserializer();
+        }
+        
+        private JsonDeserializer GetTtile(string imdbId)
+        {
+            var url = string.Format(urlGetByIDTemplate, imdbId);
+            var request = SendRequest(url);
             return new JsonDeserializer(request);
         }
 
@@ -60,78 +78,57 @@ namespace DownloaderDomain.Entities
             }
         }
      
-        private bool found(JsonDeserializer json)
-        {
-            return (json.GetString("Response") == "True");
-        }
-     
-        private IMovieExtendedInfo SearchTitle(IMovieTorrentInfo movieInfo)
-        {
-            var url = string.Format(urlSearchTemplate, movieInfo.Title, movieInfo.Year);
-            var request = SendRequest(url);
-            var response = new JsonDeserializer(request);
+    }
 
-            var search = (object[])response.GetObject("Search");
-            if (search != null)
+    public class ImdbAdapter
+    {
+        private string urlGetByTitleTemplate = "http://www.omdbapi.com/?t={0}&y={1}";
+        private string urlSearchTemplate = "http://www.omdbapi.com/?s={0}&y={1}";
+        private string urlGetByIDTemplate = "http://www.omdbapi.com/?i={0}";
+
+        private ImdbMapper mapper;
+
+        public IMovieExtendedInfo GetExtendedInfo(IMovieTorrentInfo movieInfo) 
+        {
+            mapper = new ImdbMapper();
+
+            if (movieInfo.IsValidForMetadataSearch) 
             {
-                foreach (Dictionary<string, object> result in search)
+                JsonDeserializer json = GetMovie(movieInfo);
+
+                if (!json.IsNull)
                 {
-                    if (result["Type"].ToString() == "movie")
-                    {
-                        var ID = result["imdbID"].ToString();
-                        return GetTtile(movieInfo, ID);
-                    }
+                    return mapper.ParseJson(movieInfo, json);
                 }
             }
-            
-
-            return mapper.GetBlankExtendedInfo(movieInfo);             
-        }
-  
-        private IMovieExtendedInfo GetTtile(IMovieTorrentInfo movieInfo, string imdbId)
+            return mapper.GetBlankExtendedInfo(movieInfo);        
+        } 
+        
+        private JsonDeserializer GetMovie(IMovieTorrentInfo movieInfo)
         {
-            var url = string.Format(urlGetByIDTemplate, imdbId);
-            var request = SendRequest(url);
-            var json = new JsonDeserializer(request);
-            return mapper.ParseJson(movieInfo, json);
+            var query = new ImdbQuery();            
+            return query.GetMovieDetails(movieInfo.Title,movieInfo.Year);
         }
 
-        
- 
-       
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-
-
-
-    
     }
     
     public class JsonDeserializer
     {
         private IDictionary<string, object> jsonData { get; set; }
+        public bool IsNull { get; private set; }
 
         public JsonDeserializer(string json)
         {
             var json_serializer = new JavaScriptSerializer();
 
             jsonData = (IDictionary<string, object>)json_serializer.DeserializeObject(json);
+            IsNull = false;
+        }
+
+        public JsonDeserializer()
+        {
+            IsNull = true;
+            jsonData = new Dictionary<string, object>();
         }
 
         public string GetString(string path)

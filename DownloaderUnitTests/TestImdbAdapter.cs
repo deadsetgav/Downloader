@@ -15,7 +15,7 @@ namespace DownloaderUnitTests
         [TestMethod]
         public void Test_Lookup_Single_Films_Details()
         {
-            var testMovie = new MovieInfo();
+            var testMovie = new MockMovieInfo();
             testMovie.Title = "Lethal Weapon";
             testMovie.Year = "1987";
             testMovie.IsValidForMetadataSearch = true;
@@ -30,7 +30,7 @@ namespace DownloaderUnitTests
         [TestMethod]
         public void Test_That_Search_Still_Populates()
         {
-            var testMovie = new MovieInfo();
+            var testMovie = new MockMovieInfo();
             testMovie.Title = "Anchorman 2 The Legend Continues";
             testMovie.Year = "2013";
             testMovie.IsValidForMetadataSearch = true;
@@ -49,7 +49,7 @@ namespace DownloaderUnitTests
         [TestMethod]
         public void Test_Imdb_Mapper_Populates_Extended_Info()
         {
-            var testMovie = new MovieInfo();
+            var testMovie = new MockMovieInfo();
             testMovie.Title = "Lethal Weapon";
             testMovie.Year = "1987";
             testMovie.IsValidForMetadataSearch = true;

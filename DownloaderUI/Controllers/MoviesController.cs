@@ -17,45 +17,33 @@ namespace WebApplication1.Controllers
 
         public MoviesController()
         {
+            // need to use Ninject here
             repoFactory = new DownloaderDomain.Concrete.RespositoryFactory();
         }
 
-        public MoviesController(IRepositoryFactory facade)
+        public MoviesController(IRepositoryFactory repos)
         {
-            repoFactory = facade;
+            repoFactory = repos;
         }
+         
 
-        //
-        // GET: /Movies/
         public ActionResult ListPopular(int page = 1)
         {
             var repo = repoFactory.GetMostPopularTorrents();
+            return PopulateModel(page, repo);
 
-            var torrents = repo.MovieTorrents
-                //.OrderBy(m => m.Seeds)
-                .Skip((page - 1) * PageSize)
-                .Take(PageSize);
-           
-            var model = new ListModel()
-            {
-                Torrents = PopulateExtendedInfoList(torrents),
-                PagingInfo = new PagingInfo
-                {
-                    CurrentPage = page,
-                    MoviesPerPage = PageSize,
-                    TotalMovies = repo.MovieTorrents.Count()
-                }
-            };
-
-            return View(model);
         }
 
         public ActionResult ListRecent(int page = 1)
         {
             var repo = repoFactory.GetLatestUploadedTorrents();
+            return PopulateModel(page, repo);
+        }
+               
 
+        private ActionResult PopulateModel(int page, IMovieTorrentRepository repo)
+        {
             var torrents = repo.MovieTorrents
-                //.OrderBy(m => m.Seeds)
                 .Skip((page - 1) * PageSize)
                 .Take(PageSize);
 

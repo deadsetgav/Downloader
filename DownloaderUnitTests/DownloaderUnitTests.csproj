@@ -55,6 +55,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="MockObjects\MockMovieInfo.cs" />
     <Compile Include="MockObjects\MockObjectHelper.cs" />
     <Compile Include="TestExtendedTorrentRepository.cs" />
     <Compile Include="TestRepository.cs" />
